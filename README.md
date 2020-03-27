@@ -15,6 +15,7 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - [GitHub下载](https://github.com/robertchar/KotlinGanhuo/blob/master/app/release/app-release.apk?raw=true)
 
 ## 应用截图
+
 ![image](https://i.postimg.cc/28Hdqy4W/1.png)
 ![image](https://i.postimg.cc/4xqz502N/2.png)
 ![image](https://i.postimg.cc/43cpF1jv/3.png)
@@ -25,7 +26,7 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - [阿里巴巴矢量图标库](http://www.iconfont.cn/)
 
 ## 特别感谢
-- 感谢[干货集中营](https://gank.io/)提供的[WanAndroid开放API](https://gank.io/api)
+- 感谢[干货集中营](https://gank.io/)提供的[Android开放API](https://gank.io/api)
 
 
 # 更新日志
