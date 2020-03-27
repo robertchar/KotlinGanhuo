@@ -1,10 +1,10 @@
 # KotlinGanhuo
 简洁，优美的干活集中营Kotlin版客户端
 
-##框架
+## 框架
 MVP+Retrofit请求结构，使用AndroidX开发
 
-##实现的功能
+## 实现的功能
 - 首页三个模块：首页、美文、热门
 - BottomNavigationView实现Fragment切换
 - MagicIndicator+Viewpager+Frament实现左右滑动效果
@@ -15,10 +15,13 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - [GitHub下载](https://github.com/robertchar/KotlinGanhuo/blob/master/app/release/app-release.apk?raw=true)
 
 ## 应用截图
-![](https://i.postimg.cc/G4P83X1Z/2.png)
-![](https://i.postimg.cc/HVy8RpvW/1.png)
-![](https://i.postimg.cc/SXyXncSj/3.png)
-![](https://i.postimg.cc/SXDnCjRd/4.png)
+[url=https://postimg.cc/HVy8RpvW][img]https://i.postimg.cc/HVy8RpvW/1.png[/img][/url]
+
+[url=https://postimg.cc/G4P83X1Z][img]https://i.postimg.cc/G4P83X1Z/2.png[/img][/url]
+
+[url=https://postimg.cc/SXyXncSj][img]https://i.postimg.cc/SXyXncSj/3.png[/img][/url]
+
+[url=https://postimg.cc/SXDnCjRd][img]https://i.postimg.cc/SXDnCjRd/4.png[/img][/url]
 
 ## 素材来源
 - [阿里巴巴矢量图标库](http://www.iconfont.cn/)
