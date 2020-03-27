@@ -1,0 +1,2 @@
+rootProject.name='干货集中营'
+include ':app'

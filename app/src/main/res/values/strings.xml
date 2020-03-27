@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">干货集中营</string>
+    <string name="string_loading">加载中...</string>
+    <string name="string_hot">热门</string>
+    <string name="string_search">搜索</string>
+    <string name="string_main">首页</string>
+    <string name="browser_title">用系统浏览器打开</string>
+    <string name="no_data">这里空空的…</string>
+    <string name="string_marrow">美文</string>
+    <string name="string_me">我的</string>
+</resources>
