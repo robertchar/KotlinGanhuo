@@ -15,13 +15,12 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - [GitHub下载](https://github.com/robertchar/KotlinGanhuo/blob/master/app/release/app-release.apk?raw=true)
 
 ## 应用截图
-[url=https://postimg.cc/HVy8RpvW][img]https://i.postimg.cc/HVy8RpvW/1.png[/img][/url]
 
-[url=https://postimg.cc/G4P83X1Z][img]https://i.postimg.cc/G4P83X1Z/2.png[/img][/url]
+![Image text](https://i.postimg.cc/28Hdqy4W/1.png)
+![Image text](https://i.postimg.cc/4xqz502N/2.png)
+![Image text](https://i.postimg.cc/43cpF1jv/3.png)
+![Image text](https://i.postimg.cc/wvdDKmdC/4.png)
 
-[url=https://postimg.cc/SXyXncSj][img]https://i.postimg.cc/SXyXncSj/3.png[/img][/url]
-
-[url=https://postimg.cc/SXDnCjRd][img]https://i.postimg.cc/SXDnCjRd/4.png[/img][/url]
 
 ## 素材来源
 - [阿里巴巴矢量图标库](http://www.iconfont.cn/)
