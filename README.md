@@ -10,6 +10,8 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - MagicIndicator+Viewpager+Frament实现左右滑动效果
 - Flexbox_layout控件与RecyclerView实现流式布局
 - 全局捕捉异常防止崩溃
+- Fuel网络请求框架的使用
+- kotlin之协程的使用
 
 ## APP下载体验
 - [GitHub下载](https://github.com/robertchar/KotlinGanhuo/blob/master/app/release/app-release.apk?raw=true)
