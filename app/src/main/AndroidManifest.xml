@@ -24,18 +24,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="m">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity
+            android:name=".ui.activity.SpalshActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.AgentWebActivity" />
         <activity android:name=".ui.activity.RecyclerViewBitmapActivity" />
         <activity android:name=".ui.activity.HotDataActivity" />
         <activity android:name=".ui.activity.TextHtmlActivity" />
+        <activity android:name=".ui.activity.more.MoreActivity" />
+        <activity android:name=".ui.activity.more.HistoryTodayActivity" />
+        <activity android:name=".ui.activity.more.WanAndroidActivity" />
+        <activity android:name=".ui.activity.more.EveryDayMarrowActivity" />
+        <activity android:name=".ui.activity.more.HistorySearchActivity" />
+        <activity android:name=".ui.activity.more.MagicIndicatorActivity" />
+        <activity android:name=".ui.activity.more.SortDetailsActivity" />
+        <activity android:name=".ui.activity.more.RegistAndLogInActivity" />
+        <activity android:name=".ui.activity.more.IntergralActivity" />
+        <activity android:name=".ui.activity.more.AnswerActivity" />
+        <activity android:name=".ui.activity.more.SearchDetailsActivity" />
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
         <!--今日头条屏幕适配-->
         <meta-data
             android:name="design_width_in_dp"

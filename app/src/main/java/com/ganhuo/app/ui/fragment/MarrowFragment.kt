@@ -1,12 +1,15 @@
 package com.ganhuo.app.ui.fragment
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ganhuo.app.R
 import com.ganhuo.app.adpter.brvah.MarrowAdapter
+import com.ganhuo.app.adpter.brvah.MarrowViewPagerAdapter
 import com.ganhuo.app.base.BaseFragment
 import com.ganhuo.app.bean.MarrowDataBean
 import com.ganhuo.app.ui.activity.TextHtmlActivity
+import com.ganhuo.app.utils.MmkvCacheUtil
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Parameters
 import com.google.gson.Gson
@@ -25,12 +28,13 @@ import org.jetbrains.anko.uiThread
 /**
  *    author : zkk
  *    date   : 2020-03-24 12:31
- *    desc   :美文（Fuel使用）
+ *    desc   :美文（Fuel使用）viewPager2使用(设置垂直和水平)
  */
 class MarrowFragment : BaseFragment() {
     private var page = 1
     private var refresh = true
     private val marrowAdapter by lazy { MarrowAdapter(null) }
+    private val marrowViewPagerAdapter by lazy { MarrowViewPagerAdapter(null) }
 
     override fun getLayout(): Int = R.layout.fragment_search
 
@@ -73,7 +77,31 @@ class MarrowFragment : BaseFragment() {
             setHasFixedSize(true)
             adapter = marrowAdapter
         }
-        refresh()
+        viewPager2.run {
+            adapter = marrowViewPagerAdapter
+        }
+        getCashData()
+    }
+
+    private fun getCashData() {
+        doAsync {
+            //从缓存中拿数据
+            val marrowHistoryData = MmkvCacheUtil.getMarrowHistoryData()
+            uiThread {
+                if (TextUtils.isEmpty(marrowHistoryData)) {
+                    return@uiThread
+                }
+                val fromJson = Gson().fromJson<MarrowDataBean>(
+                    marrowHistoryData,
+                    object : TypeToken<MarrowDataBean>() {}.type
+                )
+                val toMutableList = fromJson.data.toMutableList()
+                marrowAdapter.setNewData(toMutableList)
+                marrowViewPagerAdapter.setNewData(toMutableList)
+            }
+        }
+
+
     }
 
     private fun refresh() {
@@ -111,6 +139,8 @@ class MarrowFragment : BaseFragment() {
                             if (refresh) {
                                 marrowAdapter.setNewData(toMutableList)
                                 smartRefreshLayout.finishRefresh(true)
+                                //保存
+                                MmkvCacheUtil.setMarrowHistoryData(d)
                             } else {
                                 marrowAdapter.addData(toMutableList)
                                 smartRefreshLayout.finishLoadMore(true)

@@ -7,7 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <!--Splash主题，启动加载图片-->
+    <style name="Splash" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@drawable/splash_launch</item>
+    </style>
     <!-- my loading dialog -->
     <style name="SelfLoadingDialogStyle">
         <item name="android:windowBackground">@android:color/transparent</item>

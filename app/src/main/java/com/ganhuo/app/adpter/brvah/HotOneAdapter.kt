@@ -1,15 +1,11 @@
 package com.ganhuo.app.adpter.brvah
 
-import android.graphics.Color
 import android.view.View
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ganhuo.app.R
 import com.ganhuo.app.bean.HotTagBean
-import com.ganhuo.app.help.RecycleViewDivider
 import com.google.android.flexbox.*
 
 class HotOneAdapter(data: MutableList<HotTagBean>?) :

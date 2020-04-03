@@ -110,6 +110,9 @@ class RecyclerViewBitmapActivity : BaseActivity(), BaseView {
                 sucess,
                 object : TypeToken<CategoryDataBean>() {}.type
             )
+            if (fromJson.status != 100) {
+                return@runOnUiThread
+            }
             val toMutableList = fromJson.data.toMutableList()
             if (fresh) {
                 categoryDataAdapter.setNewData(toMutableList)

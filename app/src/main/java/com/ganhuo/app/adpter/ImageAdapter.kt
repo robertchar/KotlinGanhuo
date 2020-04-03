@@ -16,11 +16,14 @@ import org.jetbrains.anko.find
 /**
  *    author : zkk
  *    date   : 2020-03-24 14:07
- *    desc   :banner自定义布局
+ *    desc   :banner自定义布局,图片+标题
  */
 class ImageAdapter(datas: MutableList<BannerBean.Data>?) :
     BannerAdapter<BannerBean.Data, ImageAdapter.BannerViewHolder>(datas) {
-    override fun onCreateHolder(parent: ViewGroup?, viewType: Int): ImageAdapter.BannerViewHolder {
+    override fun onCreateHolder(
+        parent: ViewGroup?,
+        viewType: Int
+    ): ImageAdapter.BannerViewHolder {
         val view =
             LayoutInflater.from(parent?.context).inflate(R.layout.item_banner, parent, false)
         return BannerViewHolder(view)
@@ -32,9 +35,11 @@ class ImageAdapter(datas: MutableList<BannerBean.Data>?) :
         position: Int,
         size: Int
     ) {
-        holder?.view?.context?.let { Glide.with(it).load(data?.image)
-            .placeholder(R.drawable.image_loading).error(R.drawable.image_failed)
-            .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv) }
+        holder?.view?.context?.let {
+            Glide.with(it).load(data?.image)
+                .placeholder(R.drawable.image_loading).error(R.drawable.image_failed)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv)
+        }
         holder?.tv?.text = data?.title
     }
 

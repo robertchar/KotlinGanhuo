@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main"
+        android:icon="@drawable/menu_main"
+        android:title="@string/string_main" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/menu_project"
+        android:title="@string/string_project" />
+    <item
+        android:id="@+id/hot"
+        android:icon="@drawable/menu_public"
+        android:title="@string/string_public" />
+    <item
+        android:id="@+id/knowledge"
+        android:icon="@drawable/more"
+        android:title="@string/string_knowledge" />
+    <item
+        android:id="@+id/me"
+        android:icon="@drawable/menu_me"
+        android:title="@string/string_me" />
+</menu>

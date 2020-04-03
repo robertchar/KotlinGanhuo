@@ -12,6 +12,7 @@ import com.tencent.mmkv.MMKV
 import me.jessyan.autosize.AutoSizeConfig
 import me.jessyan.autosize.unit.Subunits
 
+
 /**
  *    author : zkk
  *    date   : 2020-03-24 10:35
@@ -40,7 +41,9 @@ class App : MultiDexApplication() {
         mmkv()
         //今日头条适配
         initAutoSize()
+
     }
+
 
     //今日头条适配
     private fun initAutoSize() {

@@ -40,7 +40,7 @@ class TextHtmlActivity : BaseActivity() {
             setNavigationOnClickListener { finish() }
         }
         webView.run {
-            loadDataWithBaseURL(null, content?.let { getHtmlData(it) }, "text/html", "utf-8", null)
+            loadDataWithBaseURL(null, content, "text/html", "utf-8", null)
         }
     }
 

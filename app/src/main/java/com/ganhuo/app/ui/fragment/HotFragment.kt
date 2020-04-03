@@ -8,6 +8,7 @@ import com.ganhuo.app.adpter.brvah.HotOneAdapter
 import com.ganhuo.app.base.BaseFragment
 import com.ganhuo.app.bean.HotTagBean
 import com.ganhuo.app.ui.activity.HotDataActivity
+import com.ganhuo.app.ui.activity.more.MoreActivity
 import com.ganhuo.app.utils.LogUtils
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.fragment_hot.*
@@ -33,11 +34,26 @@ class HotFragment : BaseFragment() {
 
     override fun initData() {
         super.initData()
+        //添加此句才会显示menu
+        setHasOptionsMenu(true)
         toolbar.run {
             title = getString(R.string.string_hot)
+            //Fragment中添加toolbar-menu
+            inflateMenu(R.menu.menu_more)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menuBrowser -> {
+                        startActivity<MoreActivity>()
+                    }
+                    else -> {
+                    }
+                }
+                true
+            }
         }
         recyclerView.run {
             layoutManager = LinearLayoutManager(activity)
+            setHasFixedSize(true)
             adapter = hotOneAdapter
         }
         hotOneAdapter.setItemClickListener(object : HotOneAdapter.onItemClick {
@@ -62,16 +78,19 @@ class HotFragment : BaseFragment() {
     private var list = mutableListOf(
         HotTagBean.Data("专题分类", "Article"),
         HotTagBean.Data("干货分类", "GanHuo"),
-        HotTagBean.Data("妹子图", "Girl"),
-        HotTagBean.Data("暑期美食满99减15", "Article"),
-        HotTagBean.Data("移动空调", "Article"),
-        HotTagBean.Data("暑期美食满99减15", "Article"),
-        HotTagBean.Data("牙刷", "Article"),
-        HotTagBean.Data("反季特惠", "Article")
+        HotTagBean.Data("妹子图", "Girl")
     )
     private var listData = mutableListOf(
         HotTagBean(list, "浏览数", "views"),
         HotTagBean(list, "点赞数", "likes"),
         HotTagBean(list, "评论数", "comments")
     )
+
+    //随机获取title
+    private fun getRandomData(): String {
+        val arrayListOf = arrayListOf("暑期美食满99减15", "移动空调", "莫愁前路无知己，天下谁人不识君", "牙刷", "清仓大处理")
+        val size = arrayListOf.size
+        return arrayListOf[(0 until size).random()]
+    }
+
 }

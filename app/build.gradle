@@ -38,8 +38,8 @@ android {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled true//开启混淆（开启删除无用代码）
-            shrinkResources false//开启删除无用资源
-            zipAlignEnabled false//Zipalign优化(去除无用资源)
+            shrinkResources true//开启删除无用资源
+            zipAlignEnabled true//Zipalign优化(去除无用资源)
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -80,6 +80,7 @@ dependencies {
     //glide（有混淆）
     api 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    api 'jp.wasabeef:glide-transformations:4.1.0'//高斯模糊
 
     //design
     api 'com.google.android.material:material:1.2.0-alpha05'
@@ -134,4 +135,13 @@ dependencies {
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
     api 'io.reactivex:rxandroid:1.2.1'//结合rxAndroid
     api 'io.reactivex.rxjava2:rxjava:2.2.16'
+
+    //viewpager2
+    api "androidx.viewpager2:viewpager2:1.0.0"
+
+    //PictureSelector图片选择库（有混淆）
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.1'
+
+    //dialogs
+    api 'com.afollestad.material-dialogs:core:3.3.0'
 }

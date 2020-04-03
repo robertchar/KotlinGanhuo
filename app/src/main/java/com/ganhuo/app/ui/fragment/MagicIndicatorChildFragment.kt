@@ -107,6 +107,9 @@ class MagicIndicatorChildFragment : BaseFragment(), TypeView {
                 sucess,
                 object : TypeToken<ChildMagicDataBean>() {}.type
             )
+            if (fromJson.status != 100) {
+                return@runOnUiThread
+            }
             val data = fromJson.data
             childMagicAdater.setNewData(data = data.toMutableList());
             childMagicAdater.notifyDataSetChanged()

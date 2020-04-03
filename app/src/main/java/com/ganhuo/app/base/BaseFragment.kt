@@ -49,7 +49,7 @@ abstract class BaseFragment : ImmersionFragment() {
         onHiddenChange(hidden)
         if (!isInited && !hidden) {
             isInited = true
-            initData()
+            initFreshData()
         }
     }
 
@@ -89,6 +89,10 @@ abstract class BaseFragment : ImmersionFragment() {
                     )
                 }
         }
+    }
+
+    fun showLoadingDialog() {
+        showLoadingDialog("")
     }
 
     fun hideLoadingDialog() {

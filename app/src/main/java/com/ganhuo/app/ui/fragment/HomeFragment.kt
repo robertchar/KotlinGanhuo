@@ -11,21 +11,25 @@ import com.ganhuo.app.R
 import com.ganhuo.app.adpter.FragmentViewPagerAdapter
 import com.ganhuo.app.adpter.ImageAdapter
 import com.ganhuo.app.base.BaseFragment
+import com.ganhuo.app.base.string
 import com.ganhuo.app.bean.BannerBean
-import com.ganhuo.app.bean.ChildMagicDataBean
 import com.ganhuo.app.bean.TypeBean
 import com.ganhuo.app.constant.Constant
 import com.ganhuo.app.presenter.HomePresenterImpl
-import com.ganhuo.app.presenter.TypePresenterImpl
 import com.ganhuo.app.ui.activity.AgentWebActivity
 import com.ganhuo.app.utils.LogUtils
+import com.ganhuo.app.utils.MmkvCacheUtil
 import com.ganhuo.app.view.BaseView
-import com.ganhuo.app.view.TypeView
 import com.ganhuo.app.widget.ScaleTransitionPagerTitleView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.gyf.immersionbar.ImmersionBar
+import com.tencent.mmkv.MMKV
+import com.youth.banner.config.BannerConfig
+import com.youth.banner.config.IndicatorConfig
+import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.listener.OnBannerListener
+import com.youth.banner.util.BannerUtils
 import kotlinx.android.synthetic.main.fragment_main.*
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.UIUtil
@@ -34,8 +38,10 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.runOnUiThread
+import org.jetbrains.anko.uiThread
 
 
 /**
@@ -46,7 +52,10 @@ import org.jetbrains.anko.support.v4.runOnUiThread
 class HomeFragment() : BaseFragment(), BaseView {
     private val homePresenterImpl by lazy { HomePresenterImpl(this) }
     private val imageAdapter by lazy { ImageAdapter(null) }
-    private var isfirst: Boolean = true
+
+    private val mmkv: MMKV by lazy { MMKV.defaultMMKV() }
+    private var ganBannerString by mmkv.string("gan", "")
+
     private var mViewPager: ViewPager? = null
     private val list = mutableListOf(
         TypeBean("专题分类", "Article"),
@@ -75,9 +84,20 @@ class HomeFragment() : BaseFragment(), BaseView {
 
     override fun initData() {
         super.initData()
-        LogUtils.d("HomeFragmentaa")
         banner.run {
             adapter = imageAdapter
+            indicator = CircleIndicator(activity)
+//            setIndicatorSelectedColorRes(R.color.white)
+//            setIndicatorNormalColorRes(R.color.black)
+//            setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
+//            setIndicatorSpace(BannerUtils.dp2px(20F))
+            setIndicatorMargins(
+                IndicatorConfig.Margins(
+                    0, 0,
+                    BannerConfig.INDICATOR_MARGIN, BannerUtils.dp2px(12f).toInt()
+                )
+            )
+//            setIndicatorWidth(10, 20)
             setOnBannerListener(object : OnBannerListener<BannerBean.Data> {
                 override fun onBannerChanged(position: Int) {
                 }
@@ -91,9 +111,25 @@ class HomeFragment() : BaseFragment(), BaseView {
                 }
             })
         }
-        refresh()
+        //获得缓存
+        getCashBanner()
         //magic
         magic()
+    }
+
+    private fun getCashBanner() {
+        if (ganBannerString.isEmpty()) {
+            getBannerData()
+        } else {
+            val fromJson =
+                Gson().fromJson<BannerBean>(
+                    ganBannerString,
+                    object : TypeToken<BannerBean>() {}.type
+                )
+            val data = fromJson.data.toMutableList()
+            imageAdapter.setDatas(data)
+            imageAdapter.notifyDataSetChanged()
+        }
     }
 
     private fun magic() {
@@ -144,9 +180,6 @@ class HomeFragment() : BaseFragment(), BaseView {
         ViewPagerHelper.bind(magicIndicator, mViewPager);
     }
 
-    private fun refresh() {
-        getBannerData()
-    }
 
     private fun getBannerData() {
         homePresenterImpl.getBanner()
@@ -162,8 +195,12 @@ class HomeFragment() : BaseFragment(), BaseView {
         runOnUiThread {
             val fromJson =
                 Gson().fromJson<BannerBean>(sucess, object : TypeToken<BannerBean>() {}.type)
-            val datas = fromJson.data.toMutableList()
-            imageAdapter.setDatas(datas)
+            if (fromJson.status != 100) {
+                return@runOnUiThread
+            }
+            ganBannerString = sucess
+            val data = fromJson.data.toMutableList()
+            imageAdapter.setDatas(data)
             imageAdapter.notifyDataSetChanged()
         }
 

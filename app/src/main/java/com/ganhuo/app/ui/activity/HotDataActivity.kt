@@ -14,7 +14,6 @@ import com.ganhuo.app.presenter.HotpresenterImpl
 import com.ganhuo.app.view.BaseView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_hot.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.startActivity
@@ -113,6 +112,9 @@ class HotDataActivity : BaseActivity(), BaseView {
         runOnUiThread {
             val fromJson =
                 Gson().fromJson<HotDataBean>(sucess, object : TypeToken<HotDataBean>() {}.type)
+            if (fromJson.status != 100) {
+               return@runOnUiThread
+            }
             val toMutableList = fromJson.data.toMutableList()
             hotDataAdapter.setNewData(toMutableList)
         }

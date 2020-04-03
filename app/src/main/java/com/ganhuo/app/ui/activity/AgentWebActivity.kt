@@ -44,7 +44,7 @@ class AgentWebActivity : BaseActivity() {
         }
         intent.extras?.let {
             shareUrl = it.getString(Constant.CONTENT_URL_KEY).toString()
-            val title = it.getString(Constant.CONTENT_TITLE_KEY)
+            val title = it.getString(Constant.CONTENT_TITLE_KEY, getString(R.string.app_name))
             agentWeb = AgentWeb.with(this)
                 .setAgentWebParent(container, LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()

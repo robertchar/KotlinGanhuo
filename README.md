@@ -22,6 +22,10 @@ MVP+Retrofit请求结构，使用AndroidX开发
 ![image](https://i.postimg.cc/4xqz502N/2.png)
 ![image](https://i.postimg.cc/43cpF1jv/3.png)
 ![image](https://i.postimg.cc/wvdDKmdC/4.png)
+![image](https://i.postimg.cc/QtLT05C3/1.png)
+![image](https://i.postimg.cc/MH5f6FD6/2.png)
+![image](https://i.postimg.cc/1XsNZQD7/3.png)
+![image](https://i.postimg.cc/59SCSXMh/4.png)
 
 
 ## 素材来源
@@ -29,9 +33,14 @@ MVP+Retrofit请求结构，使用AndroidX开发
 
 ## 特别感谢
 - 感谢[干货集中营](https://gank.io/)提供的[Android开放API](https://gank.io/api)
+- 感谢[玩Android](https://www.wanandroid.com/)提供的[Android开放API](https://www.wanandroid.com/blog/show/2)
 
 
 # 更新日志
+
+## v 1.0.0 (2020-4-3)
+
+- 集成wan开发api
 
 ## v 1.0.0 (2020-3-27)
 

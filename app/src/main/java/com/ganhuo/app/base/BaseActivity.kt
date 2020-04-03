@@ -43,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected open fun cancelRequest() {
-        
+
     }
 
     override fun finish() {
@@ -69,6 +69,11 @@ abstract class BaseActivity : AppCompatActivity() {
                 )
         }
     }
+
+    fun showLoadingDialog() {
+        showLoadingDialog("")
+    }
+
 
     fun hideLoadingDialog() {
         if (loadingDialog != null)

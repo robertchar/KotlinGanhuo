@@ -6,7 +6,6 @@ package com.ganhuo.app.constant
  *    desc   :
  */
 object Constant {
-
     //baseurl
     const val REQUEST_BASE_URL: String = "https://gank.io/api/v2/"
 
@@ -37,5 +36,18 @@ object Constant {
      * category_type类型
      */
     const val CONTENT_TYPE_KEY: String = "category_type"
+
     const val CATEGORY_KEY: String = "category_key"
+
+    //https://www.mxnzp.com/api 的id 密码
+    const val APP_ID = "qnjhumliqwpjmjan"
+
+    const val APP_KEY = "TEJRZktkN1FCVXhMQjExQW1HUHV0UT09"
+
+    //知识体系
+    const val CONTENT_CHILDREN_DATA_KEY = "childrenData"
+    /**
+     * cid key
+     */
+    const val CONTENT_CID_KEY = "cid"
 }
