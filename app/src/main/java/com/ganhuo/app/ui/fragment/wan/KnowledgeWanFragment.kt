@@ -61,10 +61,6 @@ class KnowledgeWanFragment : BaseFragment() {
         }
     }
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
-
     override fun initData() {
         super.initData()
         //magic

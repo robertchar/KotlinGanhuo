@@ -144,4 +144,10 @@ dependencies {
 
     //dialogs
     api 'com.afollestad.material-dialogs:core:3.3.0'
+
+    //工具类
+    api 'com.blankj:utilcodex:1.27.2'
+
+    //GridPager
+    api 'com.github.mtjsoft:GridPager:v3.0.0'
 }

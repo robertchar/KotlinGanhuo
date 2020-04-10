@@ -3,14 +3,11 @@ package com.ganhuo.app.ui.activity.more
 import android.app.Activity
 import android.content.Intent
 import android.text.TextUtils
-import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.ganhuo.app.R
 import com.ganhuo.app.adpter.brvah.more.DemoStringAdapter
@@ -19,6 +16,7 @@ import com.ganhuo.app.base.Preference
 import com.ganhuo.app.bean.HeaderBean
 import com.ganhuo.app.help.pictureselector.GlideEngine
 import com.ganhuo.app.utils.LogUtils
+import com.ganhuo.app.utils.isDestroy
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FileDataPart
 import com.google.gson.Gson
@@ -43,7 +41,15 @@ import java.io.File
 class MoreActivity : BaseActivity() {
     private var urlString: String by Preference("head", "")
     private val adapterString: DemoStringAdapter by lazy { DemoStringAdapter(listData) }
-    private var listData = mutableListOf("历史上的今天", "每日精美语句", "玩Android客户端")
+    private var listData = mutableListOf(
+        "历史上的今天",
+        "每日精美语句",
+        "玩Android客户端",
+        "新闻",
+        "段子乐",
+        "段子乐（随机）",
+        "照片墙"
+    )
 
     override fun setLayoutId(): Int {
         return R.layout.activity_more
@@ -81,6 +87,22 @@ class MoreActivity : BaseActivity() {
                     //wan
                     startActivity<WanAndroidActivity>()
                 }
+                3 -> {
+                    //新闻
+                    startActivity<NewsActivity>()
+                }
+                4 -> {
+                    //段子乐
+                    startActivity<DuanZiActivity>()
+                }
+                5 -> {
+                    //段子乐随机
+                    startActivity<DuanZiRandomActivity>()
+                }
+                6 -> {
+                    //照片墙
+                    startActivity<PhotoWallActivity>()
+                }
                 else -> {
                 }
             }
@@ -89,26 +111,28 @@ class MoreActivity : BaseActivity() {
     private fun setSaveHead() {
         if (!TextUtils.isEmpty(urlString)) {
             LogUtils.d("urlString:$urlString")
-            Glide.with(this@MoreActivity).load(urlString)
-                .placeholder(R.drawable.head_default)
-                .error(R.drawable.head_default).diskCacheStrategy(
-                    DiskCacheStrategy.ALL
-                ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
-                .into(head_more)
-            //高斯模糊
-            Glide.with(this@MoreActivity).load(urlString)
-                .placeholder(R.drawable.image_failed)
-                .error(R.drawable.image_failed).diskCacheStrategy(
-                    DiskCacheStrategy.ALL
-                ).apply( //高斯模糊
-                    RequestOptions.bitmapTransform(
-                        BlurTransformation(
-                            23,
-                            3
+            if (!isDestroy(this)) {
+                Glide.with(this@MoreActivity).load(urlString)
+                    .placeholder(R.drawable.head_default)
+                    .error(R.drawable.head_default).diskCacheStrategy(
+                        DiskCacheStrategy.ALL
+                    ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
+                    .into(head_more)
+                //高斯模糊
+                Glide.with(this@MoreActivity).load(urlString)
+                    .placeholder(R.drawable.image_failed)
+                    .error(R.drawable.image_failed).diskCacheStrategy(
+                        DiskCacheStrategy.ALL
+                    ).apply( //高斯模糊
+                        RequestOptions.bitmapTransform(
+                            BlurTransformation(
+                                23,
+                                3
+                            )
                         )
-                    )
-                )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
-                .into(bg_image)
+                    )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
+                    .into(bg_image)
+            }
         }
     }
 
@@ -167,27 +191,29 @@ class MoreActivity : BaseActivity() {
                             toast(msg)
                             if (code == 200) {
                                 urlString = fromJson?.url?.ali.toString()
-                                Glide.with(this@MoreActivity)
-                                    .load(urlString)
-                                    .placeholder(R.drawable.head_default)
-                                    .error(R.drawable.head_default).diskCacheStrategy(
-                                        DiskCacheStrategy.ALL
-                                    ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
-                                    .into(head_more)
-                                //高斯模糊
-                                Glide.with(this@MoreActivity).load(urlString)
-                                    .placeholder(R.drawable.image_failed)
-                                    .error(R.drawable.image_failed).diskCacheStrategy(
-                                        DiskCacheStrategy.ALL
-                                    ).apply( //高斯模糊
-                                        RequestOptions.bitmapTransform(
-                                            BlurTransformation(
-                                                23,
-                                                3
+                                if (!isDestroy(this@MoreActivity)) {
+                                    Glide.with(this@MoreActivity)
+                                        .load(urlString)
+                                        .placeholder(R.drawable.head_default)
+                                        .error(R.drawable.head_default).diskCacheStrategy(
+                                            DiskCacheStrategy.ALL
+                                        ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
+                                        .into(head_more)
+                                    //高斯模糊
+                                    Glide.with(this@MoreActivity).load(urlString)
+                                        .placeholder(R.drawable.image_failed)
+                                        .error(R.drawable.image_failed).diskCacheStrategy(
+                                            DiskCacheStrategy.ALL
+                                        ).apply( //高斯模糊
+                                            RequestOptions.bitmapTransform(
+                                                BlurTransformation(
+                                                    23,
+                                                    3
+                                                )
                                             )
-                                        )
-                                    )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
-                                    .into(bg_image)
+                                        )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
+                                        .into(bg_image)
+                                }
                             }
                         }
                     }, { err ->

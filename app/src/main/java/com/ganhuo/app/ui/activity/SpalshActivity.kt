@@ -1,10 +1,12 @@
 package com.ganhuo.app.ui.activity
 
 import android.content.Intent
+import android.view.KeyEvent
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import com.ganhuo.app.R
 import com.ganhuo.app.base.BaseActivity
+import com.gyf.immersionbar.BarHide
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
@@ -48,4 +50,14 @@ class SpalshActivity : BaseActivity() {
         finish()
     }
 
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        immersionBar.hideBar(BarHide.FLAG_HIDE_BAR).init()//隐藏状态栏或导航栏或两者，不写默认不隐藏
+    }
+
+    //Android禁用返回键
+    override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
+        return if (event?.keyCode == KeyEvent.KEYCODE_BACK) true else
+            super.dispatchKeyEvent(event)
+    }
 }

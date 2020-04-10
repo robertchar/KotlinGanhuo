@@ -32,6 +32,11 @@ class HotFragment : BaseFragment() {
         }
     }
 
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        immersionBar.titleBar(toolbar).init()
+    }
+
     override fun initData() {
         super.initData()
         //添加此句才会显示menu
@@ -68,10 +73,6 @@ class HotFragment : BaseFragment() {
                 startActivity<HotDataActivity>("hot_type" to type, "category" to data.category)
             }
         })
-    }
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).titleBar(toolbar).init();
     }
 
     //初始化数据

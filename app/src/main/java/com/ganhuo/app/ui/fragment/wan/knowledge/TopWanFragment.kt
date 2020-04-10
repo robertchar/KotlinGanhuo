@@ -36,11 +36,6 @@ class TopWanFragment : BaseFragment() {
         }
     }
 
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
-
     override fun initData() {
         smartRefreshLayout.run {
             setOnRefreshListener { refresh() }

@@ -7,10 +7,12 @@ import android.text.Html
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.viewpager.widget.ViewPager
+import com.blankj.utilcode.util.TimeUtils
 import com.ganhuo.app.R
 import com.ganhuo.app.adpter.FragmentViewPagerAdapter
 import com.ganhuo.app.adpter.ImageAdapter
 import com.ganhuo.app.base.BaseFragment
+import com.ganhuo.app.base.long
 import com.ganhuo.app.base.string
 import com.ganhuo.app.bean.BannerBean
 import com.ganhuo.app.bean.TypeBean
@@ -55,6 +57,7 @@ class HomeFragment() : BaseFragment(), BaseView {
 
     private val mmkv: MMKV by lazy { MMKV.defaultMMKV() }
     private var ganBannerString by mmkv.string("gan", "")
+    private var timeFresh by mmkv.long("timeFresh", 0)
 
     private var mViewPager: ViewPager? = null
     private val list = mutableListOf(
@@ -118,7 +121,7 @@ class HomeFragment() : BaseFragment(), BaseView {
     }
 
     private fun getCashBanner() {
-        if (ganBannerString.isEmpty()) {
+        if (ganBannerString.isEmpty() || TimeUtils.isToday(timeFresh)) {
             getBannerData()
         } else {
             val fromJson =
@@ -183,6 +186,7 @@ class HomeFragment() : BaseFragment(), BaseView {
 
     private fun getBannerData() {
         homePresenterImpl.getBanner()
+        timeFresh = System.currentTimeMillis()
     }
 
     override fun onError(fail: String) {
@@ -218,7 +222,4 @@ class HomeFragment() : BaseFragment(), BaseView {
         banner.stop()
     }
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(false).init();
-    }
 }

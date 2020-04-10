@@ -19,19 +19,12 @@ MVP+Retrofit请求结构，使用AndroidX开发
 ## 应用截图
 
 ![image](https://i.postimg.cc/28Hdqy4W/1.png)
-
 ![image](https://i.postimg.cc/4xqz502N/2.png)
-
 ![image](https://i.postimg.cc/43cpF1jv/3.png)
-
 ![image](https://i.postimg.cc/wvdDKmdC/4.png)
-
 ![image](https://i.postimg.cc/QtLT05C3/1.png)
-
 ![image](https://i.postimg.cc/MH5f6FD6/2.png)
-
 ![image](https://i.postimg.cc/1XsNZQD7/3.png)
-
 ![image](https://i.postimg.cc/59SCSXMh/4.png)
 
 
@@ -44,6 +37,9 @@ MVP+Retrofit请求结构，使用AndroidX开发
 
 
 # 更新日志
+## v 1.0.2 (2020-4-10)
+
+- 添加新功能
 
 ## v 1.0.1 (2020-4-3)
 

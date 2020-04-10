@@ -50,6 +50,13 @@
         <activity android:name=".ui.activity.more.IntergralActivity" />
         <activity android:name=".ui.activity.more.AnswerActivity" />
         <activity android:name=".ui.activity.more.SearchDetailsActivity" />
+        <activity android:name=".ui.activity.more.NewsActivity" />
+        <activity android:name=".ui.activity.more.NewsListActivity" />
+        <activity android:name=".ui.activity.more.NewsDetailsActivity" />
+        <activity android:name=".ui.activity.more.DuanZiActivity" />
+        <activity android:name=".ui.activity.more.DuanZiRandomActivity" />
+        <activity android:name=".ui.activity.more.PhotoWallActivity" />
+        <activity android:name=".adpter.brvah.more.PhotoViewActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

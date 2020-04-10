@@ -83,8 +83,12 @@ class EveryDayMarrowActivity : BaseActivity() {
                                 success,
                                 object : TypeToken<EveryDayMarrowData>() {}.type
                             )
-                            val data = fromJson.data.toMutableList()
-                            everyDayMarrowAdapter.setNewData(data)
+                            if (fromJson.code == 1) {
+                                val data = fromJson.data.toMutableList()
+                                everyDayMarrowAdapter.setNewData(data)
+                            } else {
+                                toast(fromJson.msg)
+                            }
                         }
 
                     }, { err ->

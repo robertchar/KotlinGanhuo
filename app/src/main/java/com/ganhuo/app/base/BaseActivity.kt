@@ -30,7 +30,11 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun initImmersionBar() {
         //在BaseActivity里初始化
         immersionBar = ImmersionBar.with(this)
-        immersionBar.init()
+        immersionBar
+            .transparentNavigationBar()     //透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为 true)
+            .navigationBarDarkIcon(true)//导航栏图标是深色，不写默认为亮色
+            .fullScreen(false)////有导航栏的情况下，true则为activity 全屏显示
+            .init()
     }
 
     abstract fun setLayoutId(): Int

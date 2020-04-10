@@ -1,6 +1,7 @@
 package com.ganhuo.app.ui.fragment.wan
 
 import android.text.TextUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -14,6 +15,7 @@ import com.ganhuo.app.ui.activity.more.AnswerActivity
 import com.ganhuo.app.ui.activity.more.IntergralActivity
 import com.ganhuo.app.ui.activity.more.RegistAndLogInActivity
 import com.ganhuo.app.utils.LogUtils
+import com.ganhuo.app.utils.isDestroy
 import com.ganhuo.app.widget.LinearItem
 import com.github.kittinunf.fuel.Fuel
 import com.gyf.immersionbar.ImmersionBar
@@ -47,10 +49,6 @@ class MeWanFragment : BaseFragment() {
         fun newInstance(): MeWanFragment {
             return MeWanFragment()
         }
-    }
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
     }
 
     override fun initData() {
@@ -124,28 +122,30 @@ class MeWanFragment : BaseFragment() {
         if (!TextUtils.isEmpty(urlString)) {
             LogUtils.d("urlString:$urlString")
             activity?.let {
-                Glide.with(it).load(urlString)
-                    .placeholder(R.drawable.head_default)
-                    .error(R.drawable.head_default).diskCacheStrategy(
-                        DiskCacheStrategy.ALL
-                    ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
-                    .into(head_more)
+                if (!isDestroy(it as AppCompatActivity))
+                    Glide.with(it).load(urlString)
+                        .placeholder(R.drawable.head_default)
+                        .error(R.drawable.head_default).diskCacheStrategy(
+                            DiskCacheStrategy.ALL
+                        ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
+                        .into(head_more)
             }
             //高斯模糊
             activity?.let {
-                Glide.with(it).load(urlString)
-                    .placeholder(R.drawable.image_failed)
-                    .error(R.drawable.image_failed).diskCacheStrategy(
-                        DiskCacheStrategy.ALL
-                    ).apply( //高斯模糊
-                        RequestOptions.bitmapTransform(
-                            BlurTransformation(
-                                23,
-                                3
+                if (!isDestroy(it as AppCompatActivity))
+                    Glide.with(it).load(urlString)
+                        .placeholder(R.drawable.image_failed)
+                        .error(R.drawable.image_failed).diskCacheStrategy(
+                            DiskCacheStrategy.ALL
+                        ).apply( //高斯模糊
+                            RequestOptions.bitmapTransform(
+                                BlurTransformation(
+                                    23,
+                                    3
+                                )
                             )
-                        )
-                    )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
-                    .into(bg_image)
+                        )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
+                        .into(bg_image)
             }
         }
     }

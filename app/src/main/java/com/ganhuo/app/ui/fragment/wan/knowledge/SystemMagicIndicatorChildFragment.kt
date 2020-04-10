@@ -75,10 +75,6 @@ class SystemMagicIndicatorChildFragment : BaseFragment() {
         getData(true)//初始化就加载数据
     }
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
-
     private fun initRefreshData() {
         //下拉刷新
         smartRefreshLayout.setOnRefreshListener { refresh() }

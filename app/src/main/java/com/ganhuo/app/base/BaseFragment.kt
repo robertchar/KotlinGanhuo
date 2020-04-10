@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ganhuo.app.R
 import com.ganhuo.app.widget.WeiboDialogUtils
+import com.gyf.immersionbar.ImmersionBar
 import com.gyf.immersionbar.components.ImmersionFragment
 
 /**
@@ -99,6 +100,13 @@ abstract class BaseFragment : ImmersionFragment() {
         if (loadingDialog != null)
             WeiboDialogUtils.closeDialog(loadingDialog!!)
     }
-
-
+    protected lateinit var immersionBar: ImmersionBar
+    override fun initImmersionBar() {
+        immersionBar= ImmersionBar.with(this)
+        immersionBar .statusBarDarkFont(true)
+            .transparentNavigationBar()    //透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为 true)
+            .navigationBarDarkIcon(true)//导航栏图标是深色，不写默认为亮色
+            .fullScreen(false)//有导航栏的情况下，true则为activity 全屏显示
+            .init();
+    }
 }

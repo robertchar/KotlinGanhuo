@@ -39,10 +39,6 @@ class ProjectWanFragment : BaseFragment() {
         }
     }
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
-
     override fun initData() {
         super.initData()
         smartRefreshLayout.run {

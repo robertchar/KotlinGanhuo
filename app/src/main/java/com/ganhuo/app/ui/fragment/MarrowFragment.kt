@@ -45,7 +45,8 @@ class MarrowFragment : BaseFragment() {
     }
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).titleBar(toolbar).init();
+        super.initImmersionBar()
+        immersionBar.titleBar(toolbar).init()
     }
 
     override fun initData() {

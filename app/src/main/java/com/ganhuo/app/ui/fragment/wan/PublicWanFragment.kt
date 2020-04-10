@@ -53,10 +53,6 @@ class PublicWanFragment : BaseFragment() {
         }
     }
 
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
-
     override fun initData() {
         super.initData()
         //title

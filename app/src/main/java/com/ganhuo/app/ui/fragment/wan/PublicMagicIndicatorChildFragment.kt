@@ -126,8 +126,4 @@ class PublicMagicIndicatorChildFragment : BaseFragment() {
         }
     }
 
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
 }

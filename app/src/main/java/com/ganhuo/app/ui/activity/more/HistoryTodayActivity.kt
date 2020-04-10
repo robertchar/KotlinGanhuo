@@ -84,8 +84,12 @@ class HistoryTodayActivity : BaseActivity() {
                                 success,
                                 object : TypeToken<HistoryTodayData>() {}.type
                             )
-                            val data = fromJson.data.toMutableList()
-                            hiatoryTodayAdapter.setNewData(data)
+                            if (fromJson.code == 1) {
+                                val data = fromJson.data.toMutableList()
+                                hiatoryTodayAdapter.setNewData(data)
+                            } else {
+                                toast(fromJson.msg)
+                            }
                         }
 
                     }, { err ->

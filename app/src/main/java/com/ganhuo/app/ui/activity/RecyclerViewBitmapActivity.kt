@@ -123,4 +123,11 @@ class RecyclerViewBitmapActivity : BaseActivity(), BaseView {
             }
         }
     }
+
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        immersionBar.fitsSystemWindows(true).statusBarDarkFont(true)
+            //状态栏字体是深色，不写默认为亮色
+            .init()
+    }
 }

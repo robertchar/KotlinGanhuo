@@ -120,7 +120,4 @@ class MagicIndicatorChildFragment : BaseFragment(), TypeView {
             }
         }
     }
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
-    }
 }

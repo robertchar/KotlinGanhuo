@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.TimeUtils
 import com.ganhuo.app.R
 import com.ganhuo.app.adpter.brvah.more.ImageTitleAdapter
 import com.ganhuo.app.adpter.brvah.more.WanArticleAdapter
 import com.ganhuo.app.base.BaseFragment
+import com.ganhuo.app.base.long
 import com.ganhuo.app.base.string
 import com.ganhuo.app.bean.BannerWanBean
 import com.ganhuo.app.bean.WanArticleDataBean
@@ -43,6 +45,7 @@ class HomeWanFragment : BaseFragment() {
 
     private val mmkv: MMKV by lazy { MMKV.defaultMMKV() }
     private var wanBannerString by mmkv.string("wan", "")
+    private var timeFreshWan by mmkv.long("timeFreshWan", 0)
 
     override fun getLayout(): Int {
         return R.layout.fragment_home_wan
@@ -52,10 +55,6 @@ class HomeWanFragment : BaseFragment() {
         fun newInstance(): HomeWanFragment {
             return HomeWanFragment()
         }
-    }
-
-    override fun initImmersionBar() {
-        ImmersionBar.with(this).statusBarDarkFont(true).init();
     }
 
     override fun initData() {
@@ -121,7 +120,7 @@ class HomeWanFragment : BaseFragment() {
     //从cash中获取banner数据
     private fun setBanerFromCash() {
         LogUtils.d("bannerStr:${wanBannerString.isEmpty()}")
-        if (wanBannerString.isEmpty()) {
+        if (wanBannerString.isEmpty()|| TimeUtils.isToday(timeFreshWan)) {
             getBannerData()
         } else {
             val fromJson = Gson().fromJson<BannerWanBean>(
@@ -195,6 +194,7 @@ class HomeWanFragment : BaseFragment() {
 
     //获取banner
     private fun getBannerData() {
+        timeFreshWan=System.currentTimeMillis()
         doAsync {
             Fuel.get("https://www.wanandroid.com/banner/json")
                 .responseString { _, _, result ->

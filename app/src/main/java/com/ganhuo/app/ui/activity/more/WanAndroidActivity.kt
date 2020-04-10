@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -17,6 +18,7 @@ import com.ganhuo.app.base.BaseFragment
 import com.ganhuo.app.base.Preference
 import com.ganhuo.app.ui.fragment.wan.*
 import com.ganhuo.app.utils.LogUtils
+import com.ganhuo.app.utils.isDestroy
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.activity_wan.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -137,26 +139,28 @@ class WanAndroidActivity : BaseActivity() {
     private fun setSaveHead(bgHead: ImageView, imageHead: ImageView) {
         if (!TextUtils.isEmpty(urlString)) {
             LogUtils.d("urlString:$urlString")
-            Glide.with(this).load(urlString)
-                .placeholder(R.drawable.head_default)
-                .error(R.drawable.head_default).diskCacheStrategy(
-                    DiskCacheStrategy.ALL
-                ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
-                .into(imageHead)
-            //高斯模糊
-            Glide.with(this).load(urlString)
-                .placeholder(R.drawable.image_failed)
-                .error(R.drawable.image_failed).diskCacheStrategy(
-                    DiskCacheStrategy.ALL
-                ).apply( //高斯模糊
-                    RequestOptions.bitmapTransform(
-                        BlurTransformation(
-                            23,
-                            3
+            if (!isDestroy(this)) {
+                Glide.with(this).load(urlString)
+                    .placeholder(R.drawable.head_default)
+                    .error(R.drawable.head_default).diskCacheStrategy(
+                        DiskCacheStrategy.ALL
+                    ).apply(RequestOptions.bitmapTransform(CircleCrop()))//设置圆图片
+                    .into(imageHead)
+                //高斯模糊
+                Glide.with(this).load(urlString)
+                    .placeholder(R.drawable.image_failed)
+                    .error(R.drawable.image_failed).diskCacheStrategy(
+                        DiskCacheStrategy.ALL
+                    ).apply( //高斯模糊
+                        RequestOptions.bitmapTransform(
+                            BlurTransformation(
+                                23,
+                                3
+                            )
                         )
-                    )
-                )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
-                .into(bgHead)
+                    )  // “23”：设置模糊度(在0.0到25.0之间)，默认”25";"4":图片缩放比例,默认“1”。
+                    .into(bgHead)
+            }
         }
     }
 

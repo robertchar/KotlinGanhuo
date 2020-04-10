@@ -46,8 +46,14 @@ object Constant {
 
     //知识体系
     const val CONTENT_CHILDREN_DATA_KEY = "childrenData"
+
     /**
      * cid key
      */
     const val CONTENT_CID_KEY = "cid"
+
+    /**
+     * PHOTO_VIEW
+     */
+    const val PHOTO_VIEW = "photo_view"
 }
