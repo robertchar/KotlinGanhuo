@@ -14,7 +14,7 @@ MVP+Retrofit请求结构，使用AndroidX开发
 - kotlin之协程的使用
 
 ## APP下载体验
-- [app体验下载](https://url.cn/5HFtRru)
+- [app体验下载](https://url.cn/5INBy5r)
 
 ## 应用截图
 
@@ -34,6 +34,7 @@ MVP+Retrofit请求结构，使用AndroidX开发
 ## 特别感谢
 - 感谢[干货集中营](https://gank.io/)提供的[Android开放API](https://gank.io/api)
 - 感谢[玩Android](https://www.wanandroid.com/)提供的[Android开放API](https://www.wanandroid.com/blog/show/2)
+- 感谢[RollToolsApi](https://github.com/MZCretin/RollToolsApi)
 
 
 # 更新日志
